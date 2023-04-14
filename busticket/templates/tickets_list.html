@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Ticket</title>
+    <style>
+        body {
+    background-image:url("https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80");
+    background-repeat: no-repeat;
+	background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    bottom:0;
+}
+table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th{
+                text-align: left;
+                padding:15px;
+            }
+            td {
+                text-align: left;
+                padding: 60px;
+                font-size:x-large;
+            }
+
+            th {
+                background-color: #f84a4a;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            tr:hover {
+                background-color: #ddd;
+            }
+header {
+    background-color: #333;
+    color: rgb(86, 86, 86);
+    padding: 10px;
+}
+h3{
+    color:#fa6969;
+}
+p{
+    color:#fff;
+}
+nav {
+    position:fixed;
+    padding:18px;
+    width:100%;
+    top:0;
+    left:0;
+    margin-bottom: 100px;
+    background-color: #f84a4a;
+}
+nav p {
+    text-align: right;
+    position: absolute;
+    right: 110px;
+    top: 18px;
+    margin: 0;
+    color:#ffffff;
+}
+.btn{
+    font-size: medium;
+    text-align: right;
+    position: absolute;
+    right: 35px;
+    top: 8px;
+    margin: 0;
+    color:#ffffff;
+}
+.btn:hover{
+    color:#555;
+}
+a{
+    font-size: large;
+    padding:10px;
+    transition: color 0.5s ease;
+    text-decoration: none;
+    color:#333;
+}
+a:hover{
+    color:#ffffff;
+    cursor:pointer;
+}
+main {
+    padding-top:50px;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #ffffff;
+    background:#333 ;
+    width:338px;
+    padding:10px;
+    border-radius:5px;
+}
+form {
+  position: relative; 
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: rgba(255,255,255,0.8); 
+}
+
+div{
+    position:absolute;
+    background:#333;
+    opacity: 70%;
+    filter:blur(100px);
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 130%;
+}
+label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+    color:rgb(53, 53, 53);
+}
+
+input[type="text"], input[type="date"], input[type="number"], select {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1px;
+            position: fixed;
+            bottom: 0;
+            left:0;
+            width: 100%;
+        }
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'booktickets' %}">Book tickets</a>
+    <a href="{% url 'viewtickets' %}">View tickets</a>
+    <a href="{% url 'login_signup' %}">Login/sign up</a>
+    <a href="{% url 'logout' %}" class="btn" >Logout</a>
+    {% if user.is_authenticated %}
+    <p >Welcome, {{ user.username }}</p>
+{% endif %}
+
+    </nav>
+    <main>
+        <table border="1">
+            <tr>
+                <th>Full Name</th>
+                <th>Aadhar Number</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Date</th>
+                <th>Number of Seats</th>
+                <th>Price</th>
+            </tr>
+                <tr>
+                    <td>{{ ticket.full_name }}</td>
+                    <td>{{ ticket.aadhar_num }}</td>
+                    <td>{{ ticket.From }}</td>
+                    <td>{{ ticket.To }}</td>
+                    <td>{{ ticket.date }}</td>
+                    <td>{{ ticket.no_of_seats }}</td>
+                    <td>{{ ticket.price }}</td>
+                </tr>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2023 Bus Ticket Reservation System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

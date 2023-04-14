@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Ticket</title>
+    <style>
+        body {
+    background-image:url("https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80");
+    background-repeat: no-repeat;
+	background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    bottom:0;
+}
+
+header {
+    background-color: #333;
+    color: rgb(86, 86, 86);
+    padding: 10px;
+}
+h3{
+    color:#fa6969;
+}
+p{
+    color:#fff;
+}
+nav {
+    position:fixed;
+    padding:18px;
+    width:100%;
+    top:0;
+    left:0;
+    margin-bottom: 100px;
+    background-color: #f84a4a;
+}
+nav p {
+    text-align: right;
+    position: absolute;
+    right: 110px;
+    top: 18px;
+    margin: 0;
+    color:#ffffff;
+}
+.btn{
+    font-size: medium;
+    text-align: right;
+    position: absolute;
+    right: 35px;
+    top: 8px;
+    margin: 0;
+    color:#ffffff;
+}
+.btn:hover{
+    color:#555;
+}
+a{
+    font-size: large;
+    padding:10px;
+    transition: color 0.5s ease;
+    text-decoration: none;
+    color:#333;
+}
+a:hover{
+    color:#ffffff;
+    cursor:pointer;
+}
+main {
+    padding-top:50px;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #ffffff;
+    background:#333 ;
+    width:338px;
+    padding:10px;
+    border-radius:5px;
+}
+form {
+  position: relative; 
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: rgba(255,255,255,0.8); 
+}
+
+div{
+    position:absolute;
+    background:#333;
+    opacity: 70%;
+    filter:blur(100px);
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 130%;
+}
+label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+    color:rgb(53, 53, 53);
+}
+
+input[type="text"], input[type="date"], input[type="number"], select {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1px;
+            position: fixed;
+            bottom: 0;
+            left:0;
+            width: 100%;
+        }
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'booktickets' %}">Book tickets</a>
+    <a href="{% url 'viewtickets' %}">View tickets</a>
+    <a href="{% url 'login_signup' %}">Login/sign up</a>
+    <a href="{% url 'logout' %}" class="btn" >Logout</a>
+    {% if user.is_authenticated %}
+    <p >Welcome, {{ user.username }}</p>
+{% endif %}
+
+    </nav>
+    <main>
+        <div></div>
+        <h3>Book Your Bus Tickets Online!</h3>
+
+            <p>Traveling by bus is a convenient and affordable way to get around, and now you can book your bus tickets online with ease. Whether you're planning a short trip or a long journey, our online booking system makes it simple and hassle-free.</p><br>
+            
+            <h3> Choose Your Destination and Date</h3>
+            
+            <p>With our online booking system, you can easily select your destination, travel date, and preferred bus service. We offer a wide range of bus services to destinations all over the country, so you can find the perfect option for your travel needs.</p><br>
+            
+            <h3> Secure Payment and Instant Confirmation</h3>
+            
+            <p>Once you've selected your bus service and travel details, you can make a secure online payment using your credit or debit card. Our payment gateway is safe and secure, so you can book your bus tickets with confidence. You'll receive an instant confirmation of your booking via email or SMS.</p><br>
+            
+            <h3>Flexible Ticket Options</h3>
+            
+            <p>We offer flexible ticket options to suit your travel needs. You can choose from one-way, round-trip, or multi-city tickets, and you can even select your preferred seat on the bus. If your travel plans change, you can easily modify or cancel your booking online.</p><br>
+            
+            <h3>Customer Support and Assistance</h3>
+            
+            <p>We're here to help you with all your bus ticket booking needs. Our customer support team is available 24/7 to assist you with any queries or concerns you may have. You can reach us by phone, email, or live chat.<br>
+            
+                <p> Book your bus tickets online today and enjoy a hassle-free travel experience!</p><br>
+            
+            </p>
+    </main>
+    <footer>
+        <p>&copy; 2023 Bus Ticket Reservation System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

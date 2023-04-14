@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Ticket</title>
+    <style>
+        body {
+    background-image:url("https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80");
+    background-repeat: no-repeat;
+	background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: rgb(86, 86, 86);
+    padding: 10px;
+}
+
+nav {
+    position:fixed;
+    padding:18px;
+    width:100%;
+    top:0;
+    left:0;
+    margin-bottom: 100px;
+    background-color: #f84a4a;
+}
+a{
+    font-size: large;
+    padding:10px;
+    transition: color 0.5s ease;
+    text-decoration: none;
+    color:#333;
+}
+a:hover{
+    color:#ffffff;
+    cursor:pointer;
+}
+#signup-link{
+    color:white;
+}
+#signup-link:hover{
+    color:grey;
+}
+#login-link{
+    color:white;
+}
+#login-link:hover{
+    color:grey;
+}
+h3{
+    color:#ffffff;
+}
+main {
+    padding-top:50px;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #ffffff;
+    background:#333 ;
+    width:133px;
+    padding:10px;
+    border-radius:5px;
+}
+div { 
+    filter:blur(5px);
+    z-index: -1;
+    width:100px;
+}
+form {
+  position: relative; 
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: rgba(76, 76, 76, 0.8); 
+}
+
+div { 
+  position: absolute; 
+  filter: blur(5px);
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.btn-primary{
+    font-size: medium;
+    text-align: right;
+    position: absolute;
+    right: 40px;
+    top: 8px;
+    margin: 0;
+    color:#ffffff;
+}
+.btn-primary:hover{
+    color:#555;
+}
+label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+    color:rgb(255, 255, 255);
+}
+#sp{
+    width:500px;
+    display:contents;
+    width:50px;
+    font-weight: lighter;
+    color:rgb(255, 255, 255); 
+}
+input[type="text"], input[type="email"],input[type="date"], input[type="number"], input[type="password"], select {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+p{
+    color:aliceblue;
+}
+button[type="submit"] {
+    background-color: #f84a4a;
+    color: white;
+    border: none;
+    transition: color 0.5s ease;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1px;
+            position: fixed;
+            left:0;
+            bottom: 0;
+            width: 100%;
+        }
+
+button[type="submit"]:hover {
+    background-color: #e7e7e7;
+    color:#333;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'booktickets' %}">Book tickets</a>
+    <a href="{% url 'viewtickets' %}">View tickets</a>
+    <a href="{% url 'login_signup' %}">Login/sign up</a>
+    <a href="{% url 'logout' %}" class="btn-primary" >Logout</a>
+    </nav>
+    <main>
+        <div id="error-message"></div>
+        <h1>Sign up</h1>
+        <div></div>
+            <form id="signup-form" method="post">
+                {% csrf_token %}
+              <h3>Sign Up</h3>
+              <label for="username1">Username</label>
+              <input type="text" id="username1" name="username1"><br><br>
+              <label for="phoneno">Phone no:</label>
+              <input type="text" id="phoneno" name="phoneno"><br><br>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email"><br><br>
+              <label for="password1">Password</label>
+              <input type="password" id="password1" name="password1"><br><br>
+              <label for="cpassword">Confirm Password</label>
+              <input type="password" id="cpassword" name="cpassword"><label id="sp"><input type="checkbox" onclick="myFunction()">Show Password</label><br><br>      
+              <button type="submit">Sign Up</button>
+            </form>
+            <p>Don't have an account? <a href="{% url 'signup' %}" id="signup-link">Sign up</a></p>
+            <p>Already have an account? <a href="{% url 'login_signup' %}" id="login-link">Log in</a></p>
+          
+    </main>
+    <script>
+        function myFunction() {
+  var x = document.getElementById("password1");
+  var y = document.getElementById("cpassword");
+  if (x.type === "password" && y.type ==="password") {
+    x.type = "text";
+    y.type="text";
+  } else {
+    x.type = "password";
+    y.type = "password";
+  }
+}
+$(document).ready(function() {
+        $('#signup-form').submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: '/signup/',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    if (response.error) {
+                        $('#error-message').text(response.error);
+                        $('#error-message').show();
+                    } else {
+                        $('#signup-form').off('submit').submit();
+                    }
+                }
+            });
+        });
+    });
+        </script>
+    <footer>
+        <p>&copy; 2023 Bus Ticket Reservation System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
